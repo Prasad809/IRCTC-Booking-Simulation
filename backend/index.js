@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors({
-    origin: "*",
+    origin: "https://irctc-booking-clone-reactapp.onrender.com",
     exposedHeaders: ["rt", "bt", "bt-exp", "rt-exp"]
 }));
 require("./jobs/seatInventoryJob");

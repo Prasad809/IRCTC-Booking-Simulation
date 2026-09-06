@@ -6,7 +6,9 @@ import { encryptAES, encryptRSA } from "./Encryption";
 import Loader from "../libs/Loader"
 import { useState } from "react";
 import { decryptAES, decryptRSA } from "./Decryption";
-const instance = axios.create({});
+const instance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL
+});
 
 const headers = {
   'Content-Type': 'application/json'
