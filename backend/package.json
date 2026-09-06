@@ -1,6 +1,9 @@
 {
   "name": "employee-management-backend",
   "type": "commonjs",
+  "engines": {
+    "node": "20.11.1"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
