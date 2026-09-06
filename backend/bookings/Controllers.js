@@ -396,15 +396,8 @@ const confirmBooking = async (req, res) => {
         // ==========================================
 
         for (const passenger of passengers) {
-
-            if (
-                !passenger.name ||
-                !passenger.age ||
-                !passenger.gender
-            ) {
-                throw new Error(
-                    "Invalid passenger details"
-                );
+            if ( !passenger.name?.trim() || !passenger.age || Number(passenger.age) <= 0 || !passenger.gender?.trim()) {
+                throw new Error("Invalid passenger details");
             }
 
             let passengerMasterId = null;
@@ -417,12 +410,8 @@ const confirmBooking = async (req, res) => {
              * TMP-123456
              */
 
-            if (
-                passenger.id &&
-                !String(passenger.id).startsWith("TMP-")
-            ) {
-                passengerMasterId =
-                    String(passenger.id);
+            if (passenger.id &&!String(passenger.id).startsWith("TMP-")) {
+                passengerMasterId = String(passenger.id);
             }
 
             await connection.query(

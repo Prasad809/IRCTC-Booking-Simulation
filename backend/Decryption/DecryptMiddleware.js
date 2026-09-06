@@ -10,9 +10,7 @@ const decryptMiddleware = async (req, res, next) => {
         const lookUp = response || [];
 
         if (encType && req.body) {
-            console.log(req.body)
             req.body = decryptRequest(req.body, encType, lookUp);
-            console.log(req.body)
         }
 
         next();

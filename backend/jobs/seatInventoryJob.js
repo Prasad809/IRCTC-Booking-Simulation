@@ -221,9 +221,10 @@ const generateSeatInventory = async () => {
  * │ │ │ ┌── month
  * │ │ │ │ ┌ day of week
  * │ │ │ │ │
- * 1 13 * * *
+ * 0 0 * * *
+ * night 12:00 AM
  */
-cron.schedule("1 13 * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
     console.log("Running scheduled seat inventory job...");
     await generateSeatInventory();
 }, { timezone: "Asia/Kolkata"});

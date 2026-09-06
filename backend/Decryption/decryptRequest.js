@@ -36,11 +36,7 @@ po2z4G19MlxTzPl1Knf3whEjxFF+84IZToU/K9nw0fNmsMG81wxYZk9AMV+KCX2T
 SBQagr86jZ/vuV0OdetFsovD
 -----END PRIVATE KEY-----`
 ;
-console.log(privateKey,"privateKey")
-console.log(
-    "Private key exists:",
-    fs.existsSync(path.join(__dirname, "../Keys/private.pem"))
-);
+
 
 function decryptAES(cipherText) {
   const bytes = CryptoJS.AES.decrypt(cipherText, AES_KEY);

@@ -34,7 +34,6 @@ const signUp = async (req, res) => {
 const signIn = async (req, res) => {
     try {
         const { userNameOrEmail, password } = req.body;
-        console.log(req.body)
         if (!userNameOrEmail || !password) {
             return res.status(400).json({
                 status: false,

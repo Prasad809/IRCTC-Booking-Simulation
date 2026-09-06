@@ -82,72 +82,117 @@ function BookPassengers() {
   const [selected, setSelected] = useState([]);
   const [saveToMaster, setSaveToMaster] = useState(true);
   const [err, setErr] = useState("");
-  if (!draft.train) {
+
+  if (!draft?.train) {
     navigate("/searchTrains");
     return null;
   }
+
   const toggleSaved = (passenger) => {
-    const exists = selected.find(
-      (item) => item.id === passenger.id
+    const passengerId = passenger.id;
+
+    const exists = selected.some(
+      (item) => item.id === passengerId
     );
 
     if (exists) {
-      setSelected(
-        selected.filter(
-          (item) => item.id !== passenger.id
-        )
+      setSelected((prev) =>
+        prev.filter((item) => item.id !== passengerId)
       );
       setErr("");
       return;
     }
 
-
     if (selected.length >= MAX_PASSENGERS) {
-
       setErr(
         `Maximum ${MAX_PASSENGERS} passengers allowed per booking`
       );
-
       return;
     }
 
+    const normalizedPassenger = {
+      ...passenger,
+      name: passenger.name || passenger.passengerName,
+      passengerName:
+        passenger.passengerName || passenger.name
+    };
 
-    setSelected([
-      ...selected,
-      passenger
+    setSelected((prev) => [
+      ...prev,
+      normalizedPassenger
     ]);
 
     setErr("");
   };
 
-  const onAddInline = (values,resetForm) => {
+
+  const onAddInline = (values, resetForm) => {
+    // Maximum passenger validation
     if (selected.length >= MAX_PASSENGERS) {
-      setErr(`Maximum ${MAX_PASSENGERS} passengers allowed per booking`);
+      setErr(
+        `Maximum ${MAX_PASSENGERS} passengers allowed per booking`
+      );
       return;
     }
 
-    const isDuplicate = selected.some((passenger) => passenger.name?.trim().toLowerCase() === values.name?.trim().toLowerCase() 
-    && Number(passenger.age) === Number(values.age) && passenger.gender?.toLowerCase() === values.gender?.toLowerCase()
-    );
+    const name = values.name?.trim();
+
+    // Duplicate validation
+    const isDuplicate = selected.some((passenger) => {
+      const existingName = (
+        passenger.name ||
+        passenger.passengerName ||
+        ""
+      )
+        .trim()
+        .toLowerCase();
+
+      const newName = name.toLowerCase();
+
+      return (
+        existingName === newName &&
+        Number(passenger.age) === Number(values.age) &&
+        passenger.gender?.toLowerCase() ===
+        values.gender?.toLowerCase()
+      );
+    });
+
     if (isDuplicate) {
-      setErr( "This passenger is already added to the booking.");
+      setErr(
+        "This passenger is already added to the booking."
+      );
       return;
     }
+
+    // Create passenger object with BOTH fields
     const newPassenger = {
-      userNameOrEmail: user.userName,
-      passengerName: values.name,
+      userNameOrEmail: user?.userName,
+      name: name,
+      passengerName: name,
       age: Number(values.age),
       gender: values.gender,
       berthPreference: values.berthPreference
     };
 
+    // Save to Passenger Master if requested
     if (saveToMaster && user?.userName) {
       dispatch(addPasngerAction(newPassenger));
     }
-    setSelected((prev) => [...prev,{...newPassenger,name:newPassenger.passengerName}]);
-    resetForm({values: initialValues});
+
+    // Add passenger to current booking
+    setSelected((prev) => [
+      ...prev,
+      newPassenger
+    ]);
+
+    // Reset form
+    resetForm({
+      values: initialValues
+    });
+
     setErr("");
   };
+
 
   const onProceed = () => {
     if (selected.length === 0) {
@@ -155,12 +200,19 @@ function BookPassengers() {
       return;
     }
 
+    // Create booking passengers payload
+    const bookingPassengers = selected.map((passenger) => ({
+      ...passenger,
+      name: passenger.name || passenger.passengerName,
+      passengerName: passenger.passengerName || passenger.name
+    }));
     token.setDraftBookingDtls({
       ...draft,
-      passengers: selected
+      passengers: bookingPassengers
     });
     navigate("/paymentGateway");
   };
+
   const totalFare = Number(draft.fare || 0) * selected.length;
   return (
 
@@ -279,7 +331,7 @@ function BookPassengers() {
 
                       </td>
                       <td>
-                        {passenger.name}
+                        {passenger.name || passenger.passengerName}
                       </td>
                       <td>
                         {passenger.age}
@@ -674,7 +726,7 @@ function BookPassengers() {
                       passenger.id
                     }
                   >
-                    {passenger.name},{" "}
+                    {passenger.name || passenger.passengerName},{" "}
                     {passenger.age},{" "}
                     {passenger.gender}
                     {" — "}
