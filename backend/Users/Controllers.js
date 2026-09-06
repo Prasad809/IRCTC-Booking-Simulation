@@ -1,7 +1,7 @@
+require('dotenv').config();
 const db = require("../dbConnection");
 const bcrypt = require('bcryptjs');
 const tokens = require("../AuthJwt/Auth");
-require('dotenv').config();
 
 const accessKey = process.env.ACCESS;
 const refreshKey = process.env.REFRESH;

@@ -1,6 +1,6 @@
+require('dotenv').config();
 const { decryptRequest } = require("./decryptRequest");
 const db = require("../dbConnection");
-require('dotenv').config();
 const encyptTy = process.env.ENCTYPE;
 
 const decryptMiddleware = async (req, res, next) => {

@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
 require('dotenv').config();
+const jwt = require("jsonwebtoken");
 
 const accessKey = process.env.ACCESS;
 const refreshKey = process.env.REFRESH;

@@ -1,5 +1,5 @@
-const db = require("../dbConnection");
 require('dotenv').config();
+const db = require("../dbConnection");
 const encyptTy = process.env.ENCTYPE || "RSA";
 
 const cmgpd = async (req, res) => {
