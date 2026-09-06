@@ -75,9 +75,9 @@ const generateSeatInventory = async () => {
             }
 
             /*
-             * Generate next 30 days
+             * Generate next 7 days
              */
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 7; i++) {
 
                 const journeyDate = new Date();
 
@@ -213,7 +213,7 @@ const generateSeatInventory = async () => {
 
 
 /*
- * Run every day at 00:05 AM
+ * Run every day at 00:00 AM
  *
  * ┌──────── minute
  * │ ┌────── hour
