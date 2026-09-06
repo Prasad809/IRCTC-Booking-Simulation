@@ -1,0 +1,94 @@
+{
+    "headComponents": [
+        {
+            "name": "Login",
+            "path": "/",
+            "component":"Auth/Login",
+            "id": 0
+        },
+        {
+            "name": "SignUp",
+            "path": "/signUp",
+            "component":"Auth/SignUp",
+            "id": 1
+        },
+        {
+            "name": "Dashboard",
+            "path": "/dashboard",
+            "component":"Dashboard/Dashboard",
+            "id": 2
+        },
+        {
+            "name": "AdminDashboard",
+            "path": "/adminDashboard",
+            "component":"Admin/AdminDashboard",
+            "id": 3
+        },
+        {
+            "name": "Session",
+            "path": "/failure",
+            "component":"Session/Session",
+            "id": 4
+        },
+        {
+            "name": "AdminAddRoute",
+            "path": "/addTrainRoute",
+            "component":"Admin/AdminAddRoute",
+            "id": 5
+        },
+        {
+            "name": "BookPassengers",
+            "path": "/bookPassengers",
+            "component":"Booking/BookPassengers",
+            "id": 6
+        },
+        {
+            "name": "BookingConfirmation",
+            "path": "/bookingConfirmation",
+            "component":"Booking/BookingConfirmation",
+            "id": 7
+        },
+        {
+            "name": "MyBookings",
+            "path": "/myBookings",
+            "component":"Booking/MyBookings",
+            "id": 8
+        },
+        {
+            "name": "PaymentGateway",
+            "path": "/paymentGateway",
+            "component":"Booking/PaymentGateway",
+            "id": 9
+        },
+        {
+            "name": "PassengerMaster",
+            "path": "/passengerMaster",
+            "component":"Passengers/PassengerMaster",
+            "id": 10
+        },
+        {
+            "name": "PaymentMethods",
+            "path": "/paymentMethods",
+            "component":"PaymentMethods/PaymentMethods",
+            "id": 11
+        },
+        {
+            "name": "UserProfile",
+            "path": "/userProfile",
+            "component":"Profile/UserProfile",
+            "id": 12
+        },
+        {
+            "name": "SearchTrains",
+            "path": "/searchTrains",
+            "component":"Trains/SearchTrains",
+            "id": 13
+        },
+        {
+            "name": "TrainResults",
+            "path": "/trainResults",
+            "component":"Trains/TrainResults",
+            "id": 14
+        }
+    ]
+}

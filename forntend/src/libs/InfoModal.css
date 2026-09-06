@@ -1,0 +1,85 @@
+.im-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 42, 102, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  animation: im-fade-in 0.15s ease-out;
+}
+
+.im-card {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 340px;
+  padding: 28px 24px 24px;
+  text-align: center;
+  box-shadow: 0 12px 36px rgba(7, 42, 102, 0.25);
+  animation: im-pop-in 0.18s ease-out;
+}
+
+.im-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.im-icon-success {
+  background: #e6f6ec;
+  color: #1f9d55;
+}
+
+.im-icon-info {
+  background: #eaf1ff;
+  color: #0b3d91;
+}
+
+.im-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #072a66;
+  font-size: 1.08rem;
+}
+
+.im-message {
+  margin: 0 0 22px;
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.im-btn {
+  border: none;
+  border-radius: 8px;
+  background: #0b3d91;
+  color: #fff;
+  padding: 9px 28px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.im-btn:hover {
+  opacity: 0.9;
+}
+
+.im-btn:active {
+  transform: scale(0.97);
+}
+
+@keyframes im-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes im-pop-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

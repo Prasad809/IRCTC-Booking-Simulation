@@ -1,0 +1,83 @@
+.cm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 42, 102, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  animation: cm-fade-in 0.15s ease-out;
+}
+
+.cm-card {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 360px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 12px 36px rgba(7, 42, 102, 0.25);
+  animation: cm-pop-in 0.18s ease-out;
+}
+
+.cm-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #072a66;
+  font-size: 1.05rem;
+}
+
+.cm-message {
+  margin: 0 0 20px;
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.cm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cm-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.cm-btn:hover {
+  opacity: 0.9;
+}
+
+.cm-btn:active {
+  transform: scale(0.97);
+}
+
+.cm-btn-no {
+  background: #f4f6fb;
+  color: #072a66;
+}
+
+.cm-btn-danger {
+  background: #c0392b;
+  color: #fff;
+}
+
+.cm-btn-primary {
+  background: #0b3d91;
+  color: #fff;
+}
+
+@keyframes cm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cm-pop-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

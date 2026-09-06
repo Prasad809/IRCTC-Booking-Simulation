@@ -1,0 +1,83 @@
+.ldr-spinner {
+  display: inline-block;
+  border-radius: 50%;
+  border: 3px solid rgba(11, 61, 145, 0.15);
+  border-top-color: #0b3d91;
+  animation: ldr-spin 0.7s linear infinite;
+  box-sizing: border-box;
+}
+
+.ldr-sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.ldr-md {
+  width: 26px;
+  height: 26px;
+  border-width: 3px;
+}
+
+.ldr-lg {
+  width: 42px;
+  height: 42px;
+  border-width: 4px;
+}
+
+/* Inline mode - sits inside a button or next to text */
+.ldr-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  vertical-align: middle;
+}
+
+.ldr-text-inline {
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+/* On a colored button (e.g. a primary blue "Processing..." button), the
+   spinner track/arc should read against that background rather than the
+   default navy-on-transparent look. */
+.btn .ldr-spinner,
+button .ldr-spinner {
+  border-color: rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+}
+
+/* Full-page overlay mode */
+.ldr-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 246, 251, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  animation: ldr-fade-in 0.15s ease-out;
+}
+
+.ldr-fullpage-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ldr-text-fullpage {
+  margin: 0;
+  color: #072a66;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+@keyframes ldr-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ldr-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

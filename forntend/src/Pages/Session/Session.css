@@ -1,0 +1,56 @@
+.se-wrapper {
+  min-height: calc(80vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f4f6fb;
+}
+
+.se-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 40px 36px 36px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(7, 42, 102, 0.1);
+}
+
+.se-illustration {
+  margin-bottom: 12px;
+}
+
+.se-title {
+  margin: 8px 0 10px;
+  font-weight: 700;
+  color: #072a66;
+  font-size: 1.25rem;
+}
+
+.se-message {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+
+.se-btn {
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0b3d91 0%, #072a66 100%);
+  color: #fff;
+  padding: 11px 36px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.se-btn:hover {
+  opacity: 0.92;
+}
+
+.se-btn:active {
+  transform: scale(0.97);
+}
