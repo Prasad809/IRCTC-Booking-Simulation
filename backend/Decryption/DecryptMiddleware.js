@@ -5,6 +5,7 @@ const encyptTy = process.env.ENCTYPE;
 
 const decryptMiddleware = async (req, res, next) => {
     const [response] = await db.query("SELECT * FROM cmgpd WHERE status = 'Y'");
+    console.log(response,encyptTy,"ADP")
     try {
         const encType = encyptTy|| "RSA";
         const lookUp = response || [];

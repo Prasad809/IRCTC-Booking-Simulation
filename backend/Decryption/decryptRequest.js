@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const CryptoJS = require("crypto-js");
 const crypto = require("crypto");
 const fs = require("fs");

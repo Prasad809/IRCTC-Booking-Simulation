@@ -1,10 +1,11 @@
+require("dotenv").config();
+
 const CryptoJS = require("crypto-js");
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const db = require("../dbConnection");
 
-require("dotenv").config();
 
 const encType = process.env.ENCTYPE || "RSA";
 
