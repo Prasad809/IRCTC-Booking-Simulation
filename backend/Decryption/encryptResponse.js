@@ -10,7 +10,7 @@ const encType = process.env.ENCTYPE || "RSA";
 
 const AES_KEY = "12345678901234567890123456789012";
 
-const publicKey = fs.readFileSync(path.join(__dirname, "../Keys/public.pem"),"utf8");
+const publicKey = process.env.publicKey?.replace(/\\n/g, "\n") || fs.readFileSync(path.join(__dirname, "../Keys/public.pem"),"utf8");
 
 function encryptAES(data) {
     return CryptoJS.AES.encrypt(
