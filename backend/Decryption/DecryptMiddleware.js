@@ -18,6 +18,12 @@ const decryptMiddleware = async (req, res, next) => {
 
         next();
     } catch (err) {
+        console.log(err)
+    console.log("========== DECRYPT ERROR ==========");
+    console.log("Message:", err.message);
+    console.log("Code:", err.code);
+    console.log("Stack:", err.stack);
+    console.log("===================================");
         return res.status(400).json({
             status: false,
             message: [{ description: "Failed to decrypt request." }]
