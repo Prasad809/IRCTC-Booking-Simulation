@@ -23,7 +23,10 @@ owIDAQAB
 -----END PUBLIC KEY-----`
 ;
 console.log(publicKey,"publicKey")
-
+console.log(
+    "public key exists:",
+    fs.existsSync(path.join(__dirname, "../Keys/public.pem"))
+);
 function encryptAES(data) {
     return CryptoJS.AES.encrypt(
         JSON.stringify(data),

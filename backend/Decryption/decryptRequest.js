@@ -35,6 +35,10 @@ SBQagr86jZ/vuV0OdetFsovD
 -----END PRIVATE KEY-----`
 ;
 console.log(privateKey,"privateKey")
+console.log(
+    "Private key exists:",
+    fs.existsSync(path.join(__dirname, "../Keys/private.pem"))
+);
 
 function decryptAES(cipherText) {
   const bytes = CryptoJS.AES.decrypt(cipherText, AES_KEY);
