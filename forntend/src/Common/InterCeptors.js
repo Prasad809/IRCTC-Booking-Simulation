@@ -14,7 +14,7 @@ const headers = {
   'Content-Type': 'application/json'
 }
 const getCmgpd = () => {
-  const responseData = axios.get(`/cmgpd`, { headers: headers }).then(res => {
+  const responseData = axios.get(`https://httpsnodeapis.onrender.com/cmgpd`, { headers: headers }).then(res => {
     let data = res?.data
     token.setPiData(data);
   })
@@ -22,7 +22,7 @@ const getCmgpd = () => {
 }
 let loginDetls = {};
 const generateBearToken = async (rt) => {
-  const response = await axios.post(`/tokens`, loginDetls, { headers: { ...headers, rt: rt } });
+  const response = await axios.post(`https://httpsnodeapis.onrender.com/tokens`, loginDetls, { headers: { ...headers, rt: rt } });
   return response;
 }
 
