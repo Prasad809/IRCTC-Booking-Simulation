@@ -1,0 +1,114 @@
+.pnf-wrapper,
+.pnf-wrapper *,
+.pnf-wrapper *::before,
+.pnf-wrapper *::after {
+  box-sizing: border-box;
+}
+
+.pnf-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f4f6fb;
+}
+
+.pnf-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 40px 36px 36px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(7, 42, 102, 0.1);
+}
+
+.pnf-illustration {
+  margin-bottom: 4px;
+  max-width: 100%;
+  height: auto;
+}
+
+.pnf-code {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0b3d91;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.pnf-title {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: #072a66;
+  font-size: 1.2rem;
+}
+
+.pnf-message {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 26px;
+}
+
+.pnf-btn {
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0b3d91 0%, #072a66 100%);
+  color: #fff;
+  padding: 11px 36px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+  width: auto;
+}
+
+.pnf-btn:hover {
+  opacity: 0.92;
+}
+
+.pnf-btn:active {
+  transform: scale(0.97);
+}
+
+/* ============================================================
+   Mobile (<= 480px): smaller illustration, tighter padding, and
+   a full-width button so it's easy to tap.
+   ============================================================ */
+@media (max-width: 480px) {
+  .pnf-wrapper {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 15vh;
+  }
+
+  .pnf-card {
+    padding: 30px 22px 26px;
+    border-radius: 12px;
+  }
+
+  .pnf-illustration {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pnf-code {
+    font-size: 1.6rem;
+  }
+
+  .pnf-title {
+    font-size: 1.05rem;
+  }
+
+  .pnf-message {
+    font-size: 0.88rem;
+    margin-bottom: 20px;
+  }
+
+  .pnf-btn {
+    width: 100%;
+    padding: 12px 0;
+  }
+}
