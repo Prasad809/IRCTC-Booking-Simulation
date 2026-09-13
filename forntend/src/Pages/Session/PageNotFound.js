@@ -21,7 +21,7 @@ function PageNotFound({ message, onLoginClick }) {
 
   const handleLogin = () => {
     if (onLoginClick) return onLoginClick();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
