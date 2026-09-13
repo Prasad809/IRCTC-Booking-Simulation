@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Loader from "../libs/Loader"
-
+const PageNotFound = React.lazy(()=>import("../Pages/Session/PageNotFound"))
 const pagesContext = require.context("../Pages",true,/\.js$/);
 
 const componentCache = {};
@@ -50,6 +50,7 @@ function Maincontainer({ routers, setNxt }) {
             />
           );
         })}
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
   );
