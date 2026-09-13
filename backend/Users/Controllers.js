@@ -53,7 +53,7 @@ const signIn = async (req, res) => {
         if(user.isActive == "N"){
             return res.status(200).json({
                 status: false,
-                message: [{ description: "InActive Active.Please Contact Administration to Active Account" }]
+                message: [{ description: "InActive Account.Please Contact Administration to Active Account" }]
             });
         }
 

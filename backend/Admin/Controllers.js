@@ -1,4 +1,5 @@
 const dbPool = require("../dbConnection");
+const bcrypt = require('bcryptjs');
 
 const activeAndDeActiveUser = async (req, res) => {
     const { userNameOrEmail, userId } = req.body;
@@ -107,12 +108,13 @@ const changePassword = async (req, res) => {
                 message: [{ description: "Target user not found" }]
             });
         }
+        const hashedPassword = await bcrypt.hash("123456", 10);
 
         await dbPool.query(
             `UPDATE users
              SET password = ?
              WHERE id = ?`,
-            ["123456", userId]
+            [hashedPassword, userId]
         );
 
         return res.status(200).json({
