@@ -49,6 +49,12 @@ const signIn = async (req, res) => {
                 status: false,
                 message: [{ description: "User does not exist with these credentials" }]
             });
+        };
+        if(user.isActive == "N"){
+            return res.status(200).json({
+                status: false,
+                message: [{ description: "InActive Active.Please Contact Administration to Active Account" }]
+            });
         }
 
         const passwordMatches = await bcrypt.compare(password, user.password);
