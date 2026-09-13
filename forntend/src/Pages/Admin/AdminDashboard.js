@@ -7,6 +7,7 @@ import { getTrainRoutesAction, removeTrainRoutesAction } from "./Store/Action";
 import { useEffect, useState } from "react";
 import { bookedTicketsAction } from "../Booking/Store/Action";
 import Loader from "../../libs/Loader";
+import { runJobAction } from "../Auth/Store/Action";
 
 const loader = (load) =>{
   return load ? <Loader text={"loading....!"} fullPage={true} size="lg"/> : null;
@@ -19,6 +20,14 @@ function AdminDashboard() {
 
   const [bookings,setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const handleRunJob=()=>{
+    dispatch(runJobAction()).then(res =>{
+      if(res.payload.data.status){
+        alert(res.payload.data.message[0].description)
+      }
+    })
+  }
 
     const handleGetTickets=()=>{
       setLoading(true);
@@ -56,6 +65,7 @@ function AdminDashboard() {
       <div className="d-flex justify-content-between align-items-center">
         <h4 className="page-title">Admin Dashboard</h4>
         <Link to="/addTrainRoute"><Button>+ Add Train Route</Button></Link>
+        <Button onClick={handleRunJob}>Run Seat Inventory</Button>
       </div>
 
       <Row className="mb-3">

@@ -119,3 +119,72 @@ export const weekDaysReducer=(state=initialValues,action)=>{
     }
 };
 
+export const getAllUsersReducer=(state=initialValues,action)=>{
+    switch(action.type){
+        case "GET_ALL_USERS":
+            // if(action){
+                return state = {
+                    ...state,
+                    user:action.payload.data,
+                    error:false,
+                    errMsg:""
+                }
+            // }
+            case "SETERR":
+                return state={
+                    ...state,
+                    user:null,
+                    error:true,
+                    errMsg:action.payload.data.message?.[0]?.description
+                }
+            default:
+                return state
+    }
+};
+
+export const activeDeActiveReducer=(state=initialValues,action)=>{
+    switch(action.type){
+        case "ACT_DE_ACT":
+            // if(action){
+                return state = {
+                    ...state,
+                    user:action.payload.data,
+                    error:false,
+                    errMsg:""
+                }
+            // }
+            case "SETERR":
+                return state={
+                    ...state,
+                    user:null,
+                    error:true,
+                    errMsg:action.payload.data.message?.[0]?.description
+                }
+            default:
+                return state
+    }
+};
+
+export const resetPassReducer=(state=initialValues,action)=>{
+    switch(action.type){
+        case "RESET_PASS":
+            // if(action){
+                return state = {
+                    ...state,
+                    user:action.payload.data,
+                    error:false,
+                    errMsg:""
+                }
+            // }
+            case "SETERR":
+                return state={
+                    ...state,
+                    user:null,
+                    error:true,
+                    errMsg:action.payload.data.message?.[0]?.description
+                }
+            default:
+                return state
+    }
+};
+

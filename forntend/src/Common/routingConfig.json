@@ -89,6 +89,12 @@
             "path": "/trainResults",
             "component":"Trains/TrainResults",
             "id": 14
+        },
+        {
+            "name": "UsersList",
+            "path": "/usersList",
+            "component":"Admin/AdminUsersList",
+            "id": 15
         }
     ]
 }

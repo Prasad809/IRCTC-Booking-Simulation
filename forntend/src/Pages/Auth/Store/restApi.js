@@ -12,3 +12,6 @@ export const register =(creds)=>{
 export const logout =(creds)=>{
   return axios.post('/logout',creds,{ headers });
 };
+export const runJob =(creds)=>{
+  return axios.get('/job',creds,{ headers });
+};

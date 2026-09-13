@@ -1,4 +1,4 @@
-import { addTrainRoutes,removeTrainRoutes,getTrainRoutes, menuAuths, weekdays } from "./restApi";
+import { addTrainRoutes,removeTrainRoutes,getTrainRoutes, menuAuths, weekdays, getAllUsers, actDeActUser, resetPassword } from "./restApi";
 
 export const addTrainRoutesAction = (creds) => {
     return async (dispatch) => {
@@ -84,6 +84,60 @@ export const weekDaysAction = (creds) => {
         catch (error) {
             dispatch({
                 type: "ALL_DAYS",
+                payload: error?.message || null
+            });
+        }
+    }
+};
+
+export const getAllUsersAction = (creds) => {
+    return async (dispatch) => {
+        try {
+            const getAllUsersRes = await getAllUsers(creds);
+            return dispatch({
+                type: "GET_ALL_USERS",
+                payload: getAllUsersRes
+            });
+        }
+        catch (error) {
+            dispatch({
+                type: "GET_ALL_USERS",
+                payload: error?.message || null
+            });
+        }
+    }
+};
+
+export const actDeActiveUserAction = (creds) => {
+    return async (dispatch) => {
+        try {
+            const actDeActUserRes = await actDeActUser(creds);
+            return dispatch({
+                type: "ACT_DE_ACT",
+                payload: actDeActUserRes
+            });
+        }
+        catch (error) {
+            dispatch({
+                type: "ACT_DE_ACT",
+                payload: error?.message || null
+            });
+        }
+    }
+};
+
+export const resetPasswordAction = (creds) => {
+    return async (dispatch) => {
+        try {
+            const resetPassRes = await resetPassword(creds);
+            return dispatch({
+                type: "RESET_PASS",
+                payload: resetPassRes
+            });
+        }
+        catch (error) {
+            dispatch({
+                type: "RESET_PASS",
                 payload: error?.message || null
             });
         }

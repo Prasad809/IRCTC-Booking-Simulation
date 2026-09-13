@@ -16,6 +16,8 @@ const paymentsRouter = require("./payments/Router");
 const trainRouter = require("./trains/Router");
 const bookingRouter = require("./bookings/Router");
 const lookUpRouter = require("./Lookups/Router");
+const jobRouter = require("./jobs/Router");
+const adminRouter = require("./Admin/Router");
 const PORT = process.env.PORT || 8082;
 
 const app = express();
@@ -27,7 +29,6 @@ app.use(cors({
     origin: "https://irctc-booking-clone-reactapp.onrender.com",
     exposedHeaders: ["rt", "bt", "bt-exp", "rt-exp"]
 }));
-require("./jobs/seatInventoryJob");
 
 
 app.use('/cmgpd',cmgpd);
@@ -41,6 +42,8 @@ app.use("/passenger",auth.authMiddleWare,passRouter);
 app.use("/payments",auth.authMiddleWare,paymentsRouter);
 app.use("/trains",auth.authMiddleWare,trainRouter);
 app.use("/bookings",auth.authMiddleWare,bookingRouter);
+app.use("/admin",auth.authMiddleWare,adminRouter);
+app.use("/",auth.authMiddleWare,jobRouter);
 app.use("/", auth.authMiddleWare, lookUpRouter);
 
 app.use('/', (req, res) => {

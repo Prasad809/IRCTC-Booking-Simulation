@@ -21,3 +21,14 @@ export const menuAuths=(creds)=>{
 export const weekdays=(creds)=>{
   return axios.get('/days',creds,{ headers });
 };
+
+export const getAllUsers = (creds) => {
+  return axios.post('/admin/alUsrs', creds, { headers });
+};
+
+export const actDeActUser = (creds) => {
+  return axios.post('/admin/atDeAt', creds, { headers });
+};
+export const resetPassword = (creds) => {
+  return axios.post('/admin/restPass', creds, { headers });
+};

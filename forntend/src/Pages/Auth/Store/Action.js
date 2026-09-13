@@ -1,4 +1,4 @@
-import { auth, logout, register } from "./restApi";
+import { auth, logout, register, runJob } from "./restApi";
 
 export const authAction = (creds) => {
     return async (dispatch) => {
@@ -46,6 +46,23 @@ export const logoutAction = (creds) => {
         catch (error) {
             dispatch({
                 type: "LOGOUT",
+                payload: error?.message || null
+            });
+        }
+    }
+};
+export const runJobAction = (creds) => {
+    return async (dispatch) => {
+        try {
+            const runJobRes = await runJob(creds);
+            return dispatch({
+                type: "RUN_JOB",
+                payload: runJobRes
+            });
+        }
+        catch (error) {
+            dispatch({
+                type: "RUN_JOB",
                 payload: error?.message || null
             });
         }

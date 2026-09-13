@@ -1,0 +1,371 @@
+.aul-wrapper,
+.aul-wrapper *,
+.aul-wrapper *::before,
+.aul-wrapper *::after {
+  box-sizing: border-box;
+}
+
+.aul-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 22px 24px;
+  box-shadow: 0 4px 20px rgba(7, 42, 102, 0.08);
+}
+
+.aul-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.aul-title {
+  margin: 0;
+  color: #072a66;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.aul-stats {
+  display: flex;
+  gap: 10px;
+}
+
+.aul-stat {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.aul-stat-active {
+  background: #e6f6ec;
+  color: #1f9d55;
+}
+
+.aul-stat-inactive {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.aul-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.aul-search {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid #dbe2ef;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.aul-search:focus {
+  border-color: #0b3d91;
+}
+
+.aul-filter-tabs {
+  display: flex;
+  gap: 6px;
+  background: #f4f6fb;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.aul-filter-tab {
+  border: none;
+  background: transparent;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7280;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.aul-filter-tab-active {
+  background: #0b3d91;
+  color: #fff;
+}
+
+.aul-table-container {
+  overflow-x: auto;
+}
+
+.aul-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.aul-table th {
+  text-align: left;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+  padding: 10px 12px;
+  border-bottom: 2px solid #eef1f8;
+}
+
+.aul-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eef1f8;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.aul-table tr:last-child td {
+  border-bottom: none;
+}
+
+.aul-user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aul-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ff6f3c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aul-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.aul-badge-active {
+  background: #e6f6ec;
+  color: #1f9d55;
+}
+
+.aul-badge-inactive {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.aul-actions-cell {
+  text-align: right;
+}
+
+.aul-toggle-btn {
+  border: none;
+  border-radius: 7px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.aul-toggle-btn:hover {
+  opacity: 0.88;
+}
+
+.aul-toggle-btn:active {
+  transform: scale(0.97);
+}
+
+.aul-toggle-deactivate {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.aul-toggle-activate {
+  background: #e6f6ec;
+  color: #1f9d55;
+}
+
+.aul-empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 28px 12px !important;
+  font-size: 0.9rem;
+}
+
+/* Confirm popup (Yes/No) - shown before toggling a user's status */
+.aul-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 42, 102, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.aul-confirm-card {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 360px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 12px 36px rgba(7, 42, 102, 0.25);
+}
+
+.aul-confirm-title {
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #072a66;
+  font-size: 1.05rem;
+}
+
+.aul-confirm-message {
+  margin: 0 0 20px;
+  color: #4b5563;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.aul-confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.aul-confirm-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.aul-confirm-no {
+  background: #f4f6fb;
+  color: #072a66;
+}
+
+.aul-confirm-yes {
+  background: #c0392b;
+  color: #fff;
+}
+
+/* ============================================================
+   Mobile (<= 640px): the 5-column table doesn't fit a phone
+   screen, so each row becomes a stacked card instead of relying
+   on horizontal scroll (which hides Status/Action off-screen).
+   ============================================================ */
+@media (max-width: 640px) {
+  .aul-wrapper {
+    padding: 16px 14px 18px;
+    border-radius: 10px;
+  }
+
+  .aul-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .aul-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .aul-filter-tabs {
+    justify-content: space-between;
+  }
+
+  .aul-filter-tab {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* Table -> stacked cards */
+  .aul-table-container {
+    overflow-x: visible;
+  }
+
+  .aul-table thead {
+    display: none;
+  }
+
+  .aul-table,
+  .aul-table tbody,
+  .aul-table tr,
+  .aul-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .aul-table tr {
+    border: 1px solid #eef1f8;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(7, 42, 102, 0.05);
+  }
+
+  .aul-table tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .aul-table td {
+    border-bottom: none;
+    padding: 6px 0;
+  }
+
+  /* User cell: shown prominently at the top of the card, no label */
+  .aul-cell-user {
+    padding-bottom: 10px !important;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #eef1f8;
+  }
+
+  .aul-cell-user .aul-user-cell {
+    font-weight: 600;
+  }
+
+  /* Email / Mobile / Status rows: label on the left, value on the right */
+  .aul-table td[data-label] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .aul-table td[data-label]::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #9ca3af;
+    flex-shrink: 0;
+  }
+
+  /* Action button: full-width, sits at the bottom of the card */
+  .aul-actions-cell {
+    text-align: stretch;
+    padding-top: 10px !important;
+  }
+
+  .aul-toggle-btn {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.88rem;
+  }
+}

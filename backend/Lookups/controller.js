@@ -1,11 +1,6 @@
 const dbPool = require("../dbConnection");
 
 
-
-
-
-
-
 const paymentTypes=async(req,res)=>{
     try {
         const [rows] = await dbPool.query(`SELECT payment_type_id AS id,payment_type AS value FROM payment_types ORDER BY payment_type_id`);
@@ -109,6 +104,7 @@ const updateUserDetails = async (req, res) => {
              WHERE user_name = ? OR email = ?`,
             [userNameOrEmail, userNameOrEmail]
         );
+        console.log(users)
         if (users.length === 0) {
             return res.status(404).json({ status: false, message: [{ description: "User not found" }] });
         }
@@ -159,7 +155,11 @@ const menusAuth = async (req, res) => {
             return res.status(404).json({ status: false, message: [{ description: "User not found" }] });
         }
         if(role.toUpperCase() === "ADMIN"){
-            const adminPathsIds = [{id: 3,path: "/addTrainRoute",name:"Add Route"}, {id: 5,path: "/adminDashboard",name:"Admin Dashboard"}];
+            const adminPathsIds = [
+                {id: 3,path: "/addTrainRoute",name:"Add Route"},
+                {id: 5,path: "/adminDashboard",name:"Admin Dashboard"},
+                {id: 15,path: "/usersList",name:"Users List"}
+            ];
             return res.status(200).json({ status: true, paths: adminPathsIds, message: [{ description: "Request processed successfully" }] });
         }else{
             const userPathsIds = [

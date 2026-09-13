@@ -1,6 +1,6 @@
 const cron = require("node-cron");
 const dbPool = require("../dbConnection");
-const generateSeatInventory = async () => {
+const generateSeatInventory = async (req,res) => {
     console.log("==========================================");
     console.log("Seat inventory job started");
     console.log("Time:", new Date());
@@ -201,13 +201,13 @@ const generateSeatInventory = async () => {
         console.log(
             `Seat inventory job completed. Inserted: ${insertedCount}`
         );
-
+        return res.status(200).json({ status: true, message: [{ description: `Seat inventory job completed. Inserted: ${insertedCount}` }] })
     } catch (error) {
-
         console.error(
             "Seat inventory job failed:",
             error
         );
+        return res.status(500).json({ status: false, message: [{ description: "internal Server Error" }] });
     }
 };
 
@@ -224,10 +224,10 @@ const generateSeatInventory = async () => {
  * 0 0 * * *
  * night 12:00 AM
  */
-cron.schedule("0 0 * * *", async () => {
-    console.log("Running scheduled seat inventory job...");
-    await generateSeatInventory();
-}, { timezone: "Asia/Kolkata"});
+// cron.schedule("0 0 * * *", async () => {
+//     console.log("Running scheduled seat inventory job...");
+//     await generateSeatInventory();
+// }, { timezone: "Asia/Kolkata"});
 
 
 module.exports = { generateSeatInventory };
