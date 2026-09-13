@@ -8,7 +8,7 @@ import ConfirmModal from "../../libs/ConfirmModal";
 import Loader from "../../libs/Loader";
 
 const loader = (load) =>{
-  return load ? <Loader text={"loading....!"} fullPage={true} size="lg"/> : null;
+  return load ? <Loader fullPage={true} size="lg"/> : null;
 }
 
 function MyBookings() {

@@ -33,7 +33,7 @@ const getComponent = (componentPath) => {
 
 function Maincontainer({ routers, setNxt }) {
   return (
-    <Suspense fallback={<Loader text={"loading....!"} fullPage={true} size="lg"/>}>
+    <Suspense fallback={<Loader fullPage={true} size="lg"/>}>
       <Routes>
         {routers.headComponents.map((route) => {
           const DynamicComponent = getComponent(

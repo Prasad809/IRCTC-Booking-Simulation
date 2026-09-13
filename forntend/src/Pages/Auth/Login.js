@@ -6,11 +6,17 @@ import { authAction } from "./Store/Action";
 import { useState } from "react";
 import token from "../../Common/token";
 import { loginInitialVals as  initialValues,loginValidationSchema as validationSchema } from "./validationSchema";
+import Loader from "../../libs/Loader";
+
+const loader =(load,text) => {
+  return load ? <Loader text={text}  size="sm"/> : null
+};
 
 function Login({ setNxt }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errStatus, setErrStatus] = useState("");
+  const [loading,setLoading] = useState(false);
 
   // DO NOT CHANGE
   const handleSubmit = (values) => {
@@ -18,7 +24,7 @@ function Login({ setNxt }) {
       password: values?.password,
       userNameOrEmail: values?.userNameOrEmail
     };
-
+    setLoading(true);
     dispatch(authAction(payload)).then(res => {
       if (res?.payload?.data?.status) {
         token.setUserLoginDtls(res?.payload?.data);
@@ -31,6 +37,7 @@ function Login({ setNxt }) {
       } else {
         setErrStatus(res?.payload?.data?.message?.[0]?.description);
       }
+      setLoading(false);
     });
   };
 
@@ -117,12 +124,9 @@ function Login({ setNxt }) {
                 </BootstrapForm.Group>
 
                 {/* Submit */}
-                <Button
-                  type="submit"
-                  className="w-100"
-                >Login
+                <Button type="submit" className="w-100" disabled={loading}>
+                  {loading ? loader(loading,"Logining"):"Login"}
                 </Button>
-
               </Form>
             )}
           </Formik>

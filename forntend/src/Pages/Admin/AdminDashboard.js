@@ -11,7 +11,7 @@ import { runJobAction } from "../Auth/Store/Action";
 import "./AdminUsersList.css"
 
 const loader = (load) =>{
-  return load ? <Loader text={"loading....!"} fullPage={true} size="lg"/> : null;
+  return load ? <Loader  fullPage={true} size="lg"/> : null;
 }
 
 function AdminDashboard() {
@@ -24,12 +24,14 @@ function AdminDashboard() {
   const [success, setSuccess] = useState({ bool: false, msg: "" })
 
   const handleRunJob=()=>{
+    setLoading(true);
     dispatch(runJobAction()).then(res =>{
       if(res.payload.data.status){
         setSuccess({ bool: true, msg: res.payload.data.message[0].description })
       }else{
         setSuccess({ bool: true, msg: res.payload.data.message[0].description })
       }
+      setLoading(false);
     })
   }
 
@@ -39,7 +41,7 @@ function AdminDashboard() {
         if(res?.payload?.data?.status){
           setBookings(res?.payload?.data?.lookUpData || [])
         }else{
-  
+          
         }
         setLoading(false);
       })
@@ -51,12 +53,14 @@ function AdminDashboard() {
       setTrains(res?.payload?.data?.lookUpData || []);
       setLoading(false);
     });
-  }
+  };
+
   const handleRemoveTrainRoutes = (id) => {
     dispatch(removeTrainRoutesAction({userNameOrEmail:user.email || user.userName,trainId:id})).then(res =>{
       hadleGetTrainRoutes();
     })
-  }
+  };
+  
   useEffect(() => {
     hadleGetTrainRoutes();
     handleGetTickets();

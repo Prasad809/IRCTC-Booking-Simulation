@@ -5,9 +5,10 @@ import { Formik, Form, FieldArray, getIn } from "formik";
 import { initialValues, validationSchema } from "./validatonSchema";
 import { addTrainRoutesAction, weekDaysAction } from "./Store/Action";
 import Loader from "../../libs/Loader";
+import { useNavigate } from "react-router-dom";
 
 const loader = (load) =>{
-  return load ? <Loader text={"loading....!"} fullPage={true} size="lg"/> : null;
+  return load ? <Loader fullPage={true} size="lg"/> : null;
 };
 
 function AdminAddRoute() {
@@ -16,6 +17,7 @@ function AdminAddRoute() {
   const user = useSelector((s) => s.authReducer.user);
   const [allDays, setAllDays] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const handleAllDays = () => {
     setLoading(true);
@@ -62,25 +64,11 @@ function AdminAddRoute() {
           ),
         }))}
         setLoading(true);
-    dispatch(addTrainRoutesAction(payload))
-      .then((res) => {
-        console.log(
-          "Add Train Response:",
-          res
-        );
-
-        if (
-          res?.payload?.data?.status
-        ) {
-
-
+    dispatch(addTrainRoutesAction(payload)).then((res) => {
+        if (res?.payload?.data?.status) {
+          navigate("/adminDashboard")
         } else {
-
-          setErrStatus(
-            res?.payload?.data
-              ?.message?.[0]
-              ?.description
-          );
+          setErrStatus(res?.payload?.data?.message?.[0]?.description);
         }
         setLoading(false);
       });

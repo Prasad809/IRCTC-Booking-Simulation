@@ -8,7 +8,7 @@ import Loader from "../../libs/Loader";
 import { initialValues, validationSchema } from "./validationSchema";
 
 const loader = (load) => {
-  return load ? <Loader text={"loading....!"} fullPage={true} size="lg" /> : null;
+  return load ? <Loader fullPage={true} size="lg" /> : null;
 }
 
 function UserProfile() {

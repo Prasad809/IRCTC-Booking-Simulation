@@ -3,9 +3,11 @@ const jwt = require("jsonwebtoken");
 
 const accessKey = process.env.ACCESS;
 const refreshKey = process.env.REFRESH;
+const accessTime = process.env.ACCESSTIME || 10;
+const refreshTime = process.env.REFRESHTIME || 20;
 
-const btExpiresIn = 10 * 60;       // 10 minutes (in seconds)
-const rtExpiresIn = 20 * 60;       // 20 mints (in seconds)
+const btExpiresIn = accessTime * 60;       // 10 minutes (in seconds)
+const rtExpiresIn = refreshTime * 60;       // 20 mints (in seconds)
 
 const accessToken = (payload, key) => {
     const accessTkn = jwt.sign(payload, key, {

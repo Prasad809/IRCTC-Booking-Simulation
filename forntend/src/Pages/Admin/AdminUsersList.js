@@ -1,14 +1,17 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import "./AdminUsersList.css";
 import { actDeActiveUserAction, getAllUsersAction, resetPasswordAction } from "./Store/Action";
-import { useEffect } from "react";
+import Loader from "../../libs/Loader";
+
+const loader = (load) =>{
+  return load ? <Loader  fullPage={true} size="lg"/> : null;
+}
 
 function AdminUsersList() {
   const dispatch = useDispatch();
   const user = useSelector(state =>state.authReducer.user)
   const [users,setUsers] = useState([]);
-  const [onToggleStatus,setOnToggleStatus] = useState(null);
   const [loading,setLoading] = useState(false);
   const [filter, setFilter] = useState("ALL");
   const [query, setQuery] = useState("");
@@ -16,10 +19,12 @@ function AdminUsersList() {
 
   const handleGetAllUsers = () =>{
     const userNameOrEmail = user.userName;
+    setLoading(true);
     dispatch(getAllUsersAction({userNameOrEmail})).then(res =>{
       if(res?.payload.data.status){
         setUsers(res?.payload.data?.users || [])
-      }
+      };
+      setLoading(false);
     })
   };
   useEffect(()=>{
@@ -53,30 +58,36 @@ function AdminUsersList() {
     const payload = {
       userNameOrEmail : user.userName,
       userId:pendingToggle.userId
-    }
+    };
+    setLoading(true);
     dispatch(actDeActiveUserAction(payload)).then(res =>{
       if(res?.payload?.data?.status){
         handleGetAllUsers();
-      }
+      };
+      setLoading(false);
     });
     setPendingToggle(null);
   };
+
   const [success,setSuccess] = useState(false);
   const confirmResetPass =(id) =>{
     const payload = {
       userNameOrEmail : user.userName,
       userId:id
     }
+    setLoading(true);
     dispatch(resetPasswordAction(payload)).then(res =>{
       if(res?.payload?.data?.status){
         handleGetAllUsers();
         setSuccess(true);
-      }
+      };
+      setLoading(false);
     });
   };
 
   return (
     <div className="aul-wrapper">
+      {loader(loading)}
       <div className="aul-header-row">
         <h4 className="aul-title">Users</h4>
         <div className="aul-stats">
