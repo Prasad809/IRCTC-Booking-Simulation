@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { bookedTicketsAction } from "../Booking/Store/Action";
 import Loader from "../../libs/Loader";
 import { runJobAction } from "../Auth/Store/Action";
+import "./AdminUsersList.css"
 
 const loader = (load) =>{
   return load ? <Loader text={"loading....!"} fullPage={true} size="lg"/> : null;
@@ -20,11 +21,14 @@ function AdminDashboard() {
 
   const [bookings,setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [success, setSuccess] = useState({ bool: false, msg: "" })
 
   const handleRunJob=()=>{
     dispatch(runJobAction()).then(res =>{
       if(res.payload.data.status){
-        alert(res.payload.data.message[0].description)
+        setSuccess({ bool: true, msg: res.payload.data.message[0].description })
+      }else{
+        setSuccess({ bool: true, msg: res.payload.data.message[0].description })
       }
     })
   }
@@ -64,7 +68,6 @@ function AdminDashboard() {
       {loader(loading)}
       <div className="d-flex justify-content-between align-items-center">
         <h4 className="page-title">Admin Dashboard</h4>
-        <Link to="/addTrainRoute"><Button>+ Add Train Route</Button></Link>
         <Button onClick={handleRunJob}>Run Seat Inventory</Button>
       </div>
 
@@ -139,6 +142,21 @@ function AdminDashboard() {
             ))}
           </tbody>
         </Table>
+      )}
+      {success.bool && (
+        <div className="aul-confirm-overlay" onClick={() => setSuccess({bool:false,msg:""})}>
+          <div className="aul-confirm-card" onClick={(e) => e.stopPropagation()}>
+            <h5 className="aul-confirm-title">
+              Completed Seat Inventory
+            </h5>
+            <p className="aul-confirm-message">{success.msg}</p>
+          <div className="aul-confirm-actions">
+              <button type="button" className="aul-confirm-btn aul-confirm-yes" onClick={()=>setSuccess({bool:false,msg:""})}>
+                Okay
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
